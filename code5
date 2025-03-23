@@ -1,0 +1,137 @@
+Question 5
+
+In a smart classroom, energy efficiency is monitored using 5 smart sensors that record power consumption (in watts) at 4 different times during the day.
+
+Your task is to analyze the power consumption data and determine:
+
+The sensor with the highest average power consumption (rounded to the nearest integer).
+
+If all sensors consume an average below 50W, display "Energy consumption is optimal."
+
+Input Format:
+20 integer values representing power consumption readings for each sensor at 4 different times, organized as follows:
+
+Time 1:
+
+Sensor 1 reading
+Sensor 2 reading
+Sensor 3 reading
+Sensor 4 reading
+Sensor 5 reading
+Time 2:
+
+Sensor 1 reading
+Sensor 2 reading
+Sensor 3 reading
+Sensor 4 reading
+Sensor 5 reading
+
+Time 3:
+
+Sensor 1 reading
+Sensor 2 reading
+Sensor 3 reading
+Sensor 4 reading
+Sensor 5 reading
+
+Time 4:
+
+Sensor 1 reading
+Sensor 2 reading
+Sensor 3 reading
+Sensor 4 reading
+Sensor 5 reading 
+
+Output Format:
+If any power reading is outside the range [10, 200], print "INVALID INPUT" and stop.
+
+Print the sensor number(s) with the highest average power consumption.
+
+If the highest average power consumption is below 50W, print "Energy consumption is optimal."
+
+Example 1: 
+
+Input: 120 110 90 85 80 100 115 85 95 90 110 130 100 80 75 105 125 95 100 85
+
+Output:  Sensor Number : 2
+
+Explanation:
+The average power consumption per sensor:
+
+Sensor 1: 120+100+110+105​    =109
+                              4
+Sensor 2: 110+115+130+125​   =120
+                              4
+Sensor 3: 90+85+100+95​          =93
+                              4
+Sensor 4: 85+95+80+100          ​=90
+                              4
+Sensor 5:  80+90+75+85            ​=83
+                              4
+Sensor 2 has the highest average power consumption of 120W, making it the highest consumer.
+
+Example 2: 
+
+Input: 45 40 35 30 25 50 45 40 35 30 42 38 36 32 28 48 42 37 34 29
+
+Output: Energy consumption is optimal.
+
+Explanation:
+All sensors have an average power consumption below 50W, so the energy usage is optimal.
+
+Example 3 (Invalid Case): 
+
+Input: 120 110 90 85 220 100 115 85 95 90 110 130 100 80 75 105 125 95 100 85
+
+Output:  INVALID INPUT
+Explanation:
+Since 220 is outside the valid range [10, 200], the input is invalid, and we output "INVALID INPUT".
+
+solution:
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int n=20;
+    vector<int> v(n);
+    for(int &i:v)
+    {
+        cin>>i;
+        if(i>200)
+        {
+            cout<<"INVALID INPUT";
+            return 0;
+        }
+    }
+    int a=(v[0]+v[5]+v[10]+v[15])/4;
+    int b=(v[1]+v[6]+v[11]+v[16])/4;
+    int c=(v[2]+v[7]+v[12]+v[17])/4;
+    int d=(v[3]+v[8]+v[13]+v[18])/4;
+    int e=(v[4]+v[9]+v[14]+v[19])/4;
+    if(a==b==c==d==e)
+    {
+        cout<<"Energy consumption is optimal.";
+    }
+    else{
+        if(a>b && a>c && a>d && a>e)
+        {
+        cout<<"Sensor Number : "<<1;
+        }
+        else if(b>a && b>c && b>d && b>e)
+        {
+        cout<<"Sensor Number : "<<2;
+        }
+         else if(c>a && c>b && c>d && c>e)
+        {
+        cout<<"Sensor Number : "<<3;
+        }
+         else if(d>a && d>c && d>b && d>e)
+        {
+        cout<<"Sensor Number : "<<4;
+        }
+         else if(e>a && e>c && e>d && e>b)
+        {
+        cout<<"Sensor Number : "<<5;
+        }
+    }
+}
